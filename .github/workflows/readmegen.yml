@@ -5,6 +5,8 @@ on:
     branches:
       - main
   workflow_dispatch:
+  schedule:
+    - cron: '0 0 */2 * *'  # Ejecutar cada 2 días a la medianoche
 
 jobs:
   generate:
@@ -21,15 +23,15 @@ jobs:
         node-version: 22.x
 
     - name: Instala dependencias
-      working-directory: ./
+      working-directory: ./ 
       run: npm install
 
     - name: Ejecuta script
-      working-directory: ./
+      working-directory: ./ 
       run: node generator.js
 
     - name: Borra node_modules
-      working-directory: ./
+      working-directory: ./ 
       run: rm -rf node_modules
 
     - name: Configura Git con el bot
