@@ -6,7 +6,7 @@ on:
       - main
   workflow_dispatch:
   schedule:
-    - cron: '0 0 */2 * *'  # Ejecutar cada 2 días a la medianoche
+    - cron: '0 0 */2 * *'
 
 jobs:
   generate:
@@ -39,7 +39,13 @@ jobs:
         git config --global user.name "AlexDeveloperBot"
         git config --global user.email "hosting@alexdevuwu.com"
 
+    - name: Verificar si hay cambios
+      id: check_changes
+      run: |
+        git diff --exit-code || echo "hay cambios"
+        
     - name: Commit y push de los cambios
+      if: steps.check_changes.outputs.changed == 'true'
       run: |
         git add .
         git commit -m "Readmes generados para los codewars"
