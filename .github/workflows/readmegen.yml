@@ -9,28 +9,29 @@ on:
 jobs:
   generate:
     runs-on: ubuntu-latest
+    if: github.actor != 'AlexDeveloperBot'
     
     steps:
     - name: Checkout código
       uses: actions/checkout@v4
-      
-    - name: Configura Node.js v18
+
+    - name: Configura Node.js v22
       uses: actions/setup-node@v4
       with:
         node-version: 22.x
-        
+
     - name: Instala dependencias
       working-directory: ./
       run: npm install
-      
+
     - name: Ejecuta script
       working-directory: ./
       run: node generator.js
-      
+
     - name: Borra node_modules
       working-directory: ./
       run: rm -rf node_modules
-      
+
     - name: Publicación de los readme
       uses: JamesIves/github-pages-deploy-action@v4.7.2
       with:
