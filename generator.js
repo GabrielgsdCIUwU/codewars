@@ -42,7 +42,12 @@ async function fetchCompletedChallenges() {
                 }
                 readmeData[language].push({ name: item.name, link: `./${language}/${item.slug}` });
 
-                await generateKataReadme(folderPath, item.id);
+                // Verificar si el README ya existe antes de generar uno nuevo
+                const kataReadmePath = path.join(folderPath, 'README.md');
+                if (!fs.existsSync(kataReadmePath)) {
+                    await generateKataReadme(folderPath, item.slug);
+                }
+
             }
 
             page++;

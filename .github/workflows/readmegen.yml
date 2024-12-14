@@ -10,7 +10,7 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     if: github.actor != 'AlexDeveloperBot'
-    
+
     steps:
     - name: Checkout código
       uses: actions/checkout@v4
@@ -32,12 +32,15 @@ jobs:
       working-directory: ./
       run: rm -rf node_modules
 
-    - name: Publicación de los readme
-      uses: JamesIves/github-pages-deploy-action@v4.7.2
-      with:
-          token: ${{ secrets.BOT_TOKEN }}
-          branch: main
-          folder: .
-          git-config-name: "AlexDeveloperBot"
-          git-config-email: "hosting@alexdevuwu.com"
-          commit-message: "Readmes generados para los codewars"
+    - name: Configura Git con el bot
+      run: |
+        git config --global user.name "AlexDeveloperBot"
+        git config --global user.email "hosting@alexdevuwu.com"
+
+    - name: Commit y push de los cambios
+      run: |
+        git add .
+        git commit -m "Readmes generados para los codewars"
+        git push https://github.com/${{ github.repository }}.git HEAD:main
+      env:
+        GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
