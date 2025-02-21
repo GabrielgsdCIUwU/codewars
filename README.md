@@ -8,6 +8,10 @@ Cada ejercicio incluye:
 
 A continuación, encontrarás una lista de los katas organizados por lenguaje de programación:
 
+# Java
+- [Name Array Capping](./java/name-array-capping)
+- [Return the day ](./java/return-the-day)
+
 # Python
 - [Are they the "same"?](./python/are-they-the-same)
 - [Array.diff](./python/array-dot-diff)
