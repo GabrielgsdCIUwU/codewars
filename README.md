@@ -9,8 +9,10 @@ Cada ejercicio incluye:
 A continuación, encontrarás una lista de los katas organizados por lenguaje de programación:
 
 # Java
+- [Create Phone Number](./java/create-phone-number)
 - [Name Array Capping](./java/name-array-capping)
 - [Return the day ](./java/return-the-day)
+- [String ends with?](./java/string-ends-with)
 
 # Python
 - [Are they the "same"?](./python/are-they-the-same)
